@@ -1,32 +1,4 @@
-<?php
 
-if (isset($_POST['submit'])) {
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cpe";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-$setid = $_REQUEST['id'];
-$setannouncement = $_REQUEST['announcement'];
-
-$sql = "UPDATE school_activity SET announcement='$setannouncement' WHERE id='$setid'";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Record updated successfully";
-} else {
-    echo "Error updating record: " . $conn->error;
-}
-
-$conn->close();
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -93,7 +65,6 @@ $conn->close();
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#">
@@ -103,46 +74,106 @@ $conn->close();
 			</ol>
 		</div><!--/.row-->
 
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Office Memorandum</h1>
+			</div>
+		</div><!--/.row-->
 		
-		
-
 
 		<div class="row">
-                    
-     
-					<div class="col-md-12">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                               
+                                
 
-					<h1 class="alert alert-success" align="center">Update Announcement</h1>
 
-					<div class="col-md-6">
-						<div class="form-group">
+                                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>ID</th>
+                                                <th>Announcement</th>
+                                                <th>Date Posted</th>
+                                                <th>Actions</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                         	<?php
 
-							<?php if (isset($note)) {echo "<div class=\"alert alert-success\"><strong>Note: </strong>" .$note. "</div>"; 
+                                         		error_reporting(0);
+												$servername = "localhost";
+												$username = "root";
+												$password = "";
+												$dbname = "cpe";
 
-						 		
-							}
+												// Create connection
+												$conn = new mysqli($servername, $username, $password, $dbname);
+												// Check connection
+												if ($conn->connect_error) {
+												    die("Connection failed: " . $conn->connect_error);
+												} 
 
-						 ?>
-       					<?php if (isset($alert)) {echo "<div class=\"alert alert-danger\"><strong>Note: </strong>" .$alert. "</div>"; }?>
+												$sql = "SELECT * FROM office_memorandum";
+												$result = $conn->query($sql);
 
-							<form action="update-school_activity.php" method="post">
+												if ($result->num_rows > 0) {
+												    // output data of each row
+												    while($row = $result->fetch_assoc()) {
+												        echo '<tr>';
+												        echo '<td>';
+												        echo  $row["id"];
+												        echo '</td>';
+												        echo '<td>';
+												        echo  $row["announcement"];
+												        echo '</td>';
+												        echo '<td>';
+												        echo  $row["date_posted"];
+												        echo '</td>';
+												   		echo '<td>';
+												        echo  '<a href="delete-officememo.php?id='.$row['id'].'" class="btn btn-danger">Delete</a>';
+												 
+												        echo  '<a href="update-officememo.php?id='.$row['id'].'" class="btn btn-warning">Update</a>';
+												        echo '</td>';
+												        echo '</tr>';
+												    }
+												} else {
 
-										<label>ID</label>
-										<input class="form-control" name="id" value="<?php echo $_REQUEST['id'];?>"/>
-										<hr>
-										<label>Announcement</label>
-										<textarea class="form-control" name="announcement"/></textarea>
+												}
+												$conn->close();
+												?>
+                                        	    
+                                        </tbody>
+                                    </table>
 
-										
+                                       <script>
+                                        $(document).ready(function() {
+                                        $('#example').DataTable();
+                                    } );
+                                        </script>
 
-										<button type="submit" name="submit" class="btn btn-warning">Update</button>
+                                        <br>
 
-						</form>				
-						</div>
+                                   
 
+                            </div>
+                        </div>
                     </div>
+                    
+                </div>
+		
+		
+		
+			<hr>
 
-
+			<a href="add-officememo.php" class="btn btn-success btn-lg">ADD</a>
+		
+			
+			
+		
 		</div><!--/.row-->
 		
 		

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2019 at 08:22 AM
+-- Generation Time: Apr 22, 2019 at 10:23 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -38,7 +38,7 @@ CREATE TABLE `color` (
 --
 
 INSERT INTO `color` (`id`, `color`) VALUES
-(0, 'powderBlue');
+(1, '#4fb051');
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,9 @@ CREATE TABLE `school_activity` (
 --
 
 INSERT INTO `school_activity` (`id`, `announcement`, `date_posted`) VALUES
-(1, 'This is sample.', '2019-04-22 04:51:19'),
-(2, 'Nice one', '2019-04-22 04:56:31');
+(1, '', '2019-04-22 07:34:47'),
+(4, 'dsa', '2019-04-22 07:32:49'),
+(5, 'dsadadas', '2019-04-22 07:33:13');
 
 -- --------------------------------------------------------
 
@@ -210,7 +211,7 @@ ALTER TABLE `special_order`
 -- AUTO_INCREMENT for table `notice_meeting`
 --
 ALTER TABLE `notice_meeting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `office_advisory`
@@ -222,25 +223,25 @@ ALTER TABLE `office_advisory`
 -- AUTO_INCREMENT for table `office_memorandum`
 --
 ALTER TABLE `office_memorandum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `others`
 --
 ALTER TABLE `others`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `school_activity`
 --
 ALTER TABLE `school_activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `special_order`
 --
 ALTER TABLE `special_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -54,7 +54,7 @@
 		<div class="divider"></div>
 		
 		<ul class="nav menu">
-			<li  class="active"><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
+			<li  class=""><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
 			<li><a href="color.php"><em class="fa fa-bar-chart">&nbsp;</em> Change Color</a></li>
 			<li><a href="school_activity.php"><em class="fa fa-bar-chart">&nbsp;</em> School Activity</a></li>
 			<li><a href="notice_meeting.php"><em class="fa fa-bar-chart">&nbsp;</em>Notice of Meeting</a></li>

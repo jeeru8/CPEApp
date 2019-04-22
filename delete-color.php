@@ -69,8 +69,40 @@
 				<li class="active">Home App</li>
 			</ol>
 		</div><!--/.row-->
-		<h1 class="alert alert-success">Give Notice</h1>
-		<img src="images/image.jpg" class="img-responsive" width="400" height="400"/>
+		<h1 class="alert alert-success">
+			
+			<?php
+				$servername = "localhost";
+				$username = "root";
+				$password = "";
+				$dbname = "cpe";
+
+				// Create connection
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				// Check connection
+				if ($conn->connect_error) {
+				    die("Connection failed: " . $conn->connect_error);
+				} 
+
+				$idget = $_REQUEST['id'];
+
+				// sql to delete a record
+				$sql = "DELETE FROM color WHERE id='$idget'";
+
+				if ($conn->query($sql) === TRUE) {
+				    echo "Record deleted successfully";
+				} else {
+				    echo "Error deleting record: " . $conn->error;
+				}
+
+				$conn->close();
+				?>
+
+
+		</h1>
+
+		<a href="dashboard.php" class="btn btn-success">Go Back</a>
+		
 		
 	</div>	<!--/.main-->
 	

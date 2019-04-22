@@ -1,3 +1,33 @@
+<?php
+
+if (isset($_POST['submit'])) {
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cpe";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$setid = $_REQUEST['id'];
+$setannouncement = $_REQUEST['announcement'];
+
+$sql = "UPDATE notice_meeting SET announcement='$setannouncement' WHERE id='$setid'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+$conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +73,10 @@
 			<div class="profile-userpic">
 				
 			</div>
-			
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">MONITORING DASHBOARD</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Administrator</div>
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
@@ -56,21 +89,62 @@
 			<li><a href="special_order.php"><em class="fa fa-bar-chart">&nbsp;</em>Special Order</a></li>
 			<li><a href="office_memorandum.php"><em class="fa fa-bar-chart">&nbsp;</em>Office Memorandum</a></li>
 			<li><a href="others.php"><em class="fa fa-bar-chart">&nbsp;</em>Others</a></li>
-			
 		</ul>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Home App</li>
+				<li class="active">Dashboard</li>
 			</ol>
 		</div><!--/.row-->
-		<h1 class="alert alert-success">Give Notice</h1>
-		<img src="images/image.jpg" class="img-responsive" width="400" height="400"/>
+
+		
+		
+
+
+		<div class="row">
+                    
+     
+					<div class="col-md-12">
+
+					<h1 class="alert alert-success" align="center">Update Announcement</h1>
+
+					<div class="col-md-6">
+						<div class="form-group">
+
+							<?php if (isset($note)) {echo "<div class=\"alert alert-success\"><strong>Note: </strong>" .$note. "</div>"; 
+
+						 		
+							}
+
+						 ?>
+       					<?php if (isset($alert)) {echo "<div class=\"alert alert-danger\"><strong>Note: </strong>" .$alert. "</div>"; }?>
+
+							<form action="update-noticemeeting.php" method="post">
+
+										<label>ID</label>
+										<input class="form-control" name="id" value="<?php echo $_REQUEST['id'];?>"/>
+										<hr>
+										<label>Announcement</label>
+										<textarea class="form-control" name="announcement"/></textarea>
+
+										
+
+										<button type="submit" name="submit" class="btn btn-warning">Update</button>
+
+						</form>				
+						</div>
+
+                    </div>
+
+
+		</div><!--/.row-->
+		
 		
 	</div>	<!--/.main-->
 	

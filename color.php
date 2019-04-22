@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +45,10 @@
 			<div class="profile-userpic">
 				
 			</div>
-			
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">MONITORING DASHBOARD</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Administrator</div>
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
@@ -56,7 +61,6 @@
 			<li><a href="special_order.php"><em class="fa fa-bar-chart">&nbsp;</em>Special Order</a></li>
 			<li><a href="office_memorandum.php"><em class="fa fa-bar-chart">&nbsp;</em>Office Memorandum</a></li>
 			<li><a href="others.php"><em class="fa fa-bar-chart">&nbsp;</em>Others</a></li>
-			
 		</ul>
 	</div><!--/.sidebar-->
 		
@@ -66,11 +70,31 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Home App</li>
+				<li class="active">Dashboard</li>
 			</ol>
 		</div><!--/.row-->
-		<h1 class="alert alert-success">Give Notice</h1>
-		<img src="images/image.jpg" class="img-responsive" width="400" height="400"/>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Change Color</h1>
+			</div>
+		</div><!--/.row-->
+		
+
+		<div class="row">
+                    
+                        
+                  <form action="update-color.php">
+				  Select your favorite color:
+				  <input type="color" name="favcolor" value="#ff0000">
+				  <input type="submit">
+				</form>
+		
+			
+			
+		
+		</div><!--/.row-->
+		
 		
 	</div>	<!--/.main-->
 	

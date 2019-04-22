@@ -1,3 +1,36 @@
+<?php
+
+if (isset($_POST['submit'])) {
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cpe";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$announcement = $_REQUEST['announcement'];
+
+
+$sql = "INSERT INTO others (announcement)
+VALUES ('$announcement')";
+
+if ($conn->query($sql) === TRUE) {
+    $note= "New Announcement Saved";
+} else {
+    $alert="Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,34 +76,75 @@
 			<div class="profile-userpic">
 				
 			</div>
-			
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">MONITORING DASHBOARD</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Administrator</div>
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
 		
 		<ul class="nav menu">
-			<li  class=""><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
+			<li  class="active"><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
 			<li><a href="color.php"><em class="fa fa-bar-chart">&nbsp;</em> Change Color</a></li>
 			<li><a href="school_activity.php"><em class="fa fa-bar-chart">&nbsp;</em> School Activity</a></li>
 			<li><a href="notice_meeting.php"><em class="fa fa-bar-chart">&nbsp;</em>Notice of Meeting</a></li>
 			<li><a href="special_order.php"><em class="fa fa-bar-chart">&nbsp;</em>Special Order</a></li>
 			<li><a href="office_memorandum.php"><em class="fa fa-bar-chart">&nbsp;</em>Office Memorandum</a></li>
 			<li><a href="others.php"><em class="fa fa-bar-chart">&nbsp;</em>Others</a></li>
-			
 		</ul>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Home App</li>
+				<li class="active">Dashboard</li>
 			</ol>
 		</div><!--/.row-->
-		<h1 class="alert alert-success">Give Notice</h1>
-		<img src="images/image.jpg" class="img-responsive" width="400" height="400"/>
+
+		
+		
+
+
+		<div class="row">
+                    
+     
+					<div class="col-md-12">
+
+					<h1 class="alert alert-success" align="center">Add Announcement</h1>
+
+					<div class="col-md-6">
+						<div class="form-group">
+
+							<?php if (isset($note)) {echo "<div class=\"alert alert-success\"><strong>Note: </strong>" .$note. "</div>"; 
+
+						 		
+							}
+
+						 ?>
+       					<?php if (isset($alert)) {echo "<div class=\"alert alert-danger\"><strong>Note: </strong>" .$alert. "</div>"; }?>
+
+							<form action="add-others.php" method="post">
+
+										<label>Announcement</label>
+										<textarea class="form-control" name="announcement"/></textarea>
+
+										<hr>
+
+										<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+
+						</form>				
+						</div>
+
+                    </div>
+
+
+		</div><!--/.row-->
+		
 		
 	</div>	<!--/.main-->
 	

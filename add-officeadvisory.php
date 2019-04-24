@@ -13,19 +13,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$setcolor = $_REQUEST['color'];
+$announcement = $_REQUEST['announcement'];
 
 
-$sql = "UPDATE color SET color='$setcolor' WHERE id=1";
+$sql = "INSERT INTO office_advisory (announcement)
+VALUES ('$announcement')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Color updated successfully";
+    $note= "New Announcement Saved";
 } else {
-    echo "Error updating color: " . $conn->error;
+    $alert="Error: " . $sql . "<br>" . $conn->error;
 }
 
 $conn->close();
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +85,7 @@ $conn->close();
 		<div class="divider"></div>
 		
 		<ul class="nav menu">
-			<li  class=""><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
+			<li  class="active"><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
 			<li><a href="color.php"><em class="fa fa-bar-chart">&nbsp;</em> Change Color</a></li>
 			<li><a href="school_activity.php"><em class="fa fa-bar-chart">&nbsp;</em> School Activity</a></li>
 			<li><a href="office_advisory.php"><em class="fa fa-bar-chart">&nbsp;</em> Office Advisory</a></li>
@@ -113,7 +116,7 @@ $conn->close();
      
 					<div class="col-md-12">
 
-					<h1 class="alert alert-success" align="center">Update Color</h1>
+					<h1 class="alert alert-success" align="center">Add Announcement</h1>
 
 					<div class="col-md-6">
 						<div class="form-group">
@@ -126,18 +129,14 @@ $conn->close();
 						 ?>
        					<?php if (isset($alert)) {echo "<div class=\"alert alert-danger\"><strong>Note: </strong>" .$alert. "</div>"; }?>
 
-							<form action="update-color.php" method="post">
+							<form action="add-officeadvisory.php" method="post">
 
-										<label>ID</label>
-										<input class="form-control" name="id" value="1"/>
+										<label>Announcement</label>
+										<textarea class="form-control" name="announcement"/></textarea>
+
 										<hr>
-										<label>Color</label>
-										<textarea class="form-control" name="color" value=""/><?php 
-										error_reporting(0);echo $_REQUEST['favcolor'];?></textarea>
 
-										
-
-										<button type="submit" name="submit" class="btn btn-warning">Update</button>
+										<button type="submit" name="submit" class="btn btn-primary">Submit</button>
 
 						</form>				
 						</div>

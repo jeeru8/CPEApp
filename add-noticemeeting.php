@@ -88,6 +88,7 @@ $conn->close();
 			<li  class="active"><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
 			<li><a href="color.php"><em class="fa fa-bar-chart">&nbsp;</em> Change Color</a></li>
 			<li><a href="school_activity.php"><em class="fa fa-bar-chart">&nbsp;</em> School Activity</a></li>
+			<li><a href="office_advisory.php"><em class="fa fa-bar-chart">&nbsp;</em> Office Advisory</a></li>
 			<li><a href="notice_meeting.php"><em class="fa fa-bar-chart">&nbsp;</em>Notice of Meeting</a></li>
 			<li><a href="special_order.php"><em class="fa fa-bar-chart">&nbsp;</em>Special Order</a></li>
 			<li><a href="office_memorandum.php"><em class="fa fa-bar-chart">&nbsp;</em>Office Memorandum</a></li>

@@ -13,15 +13,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$setcolor = $_REQUEST['color'];
+$setid = $_REQUEST['id'];
+$setannouncement = $_REQUEST['announcement'];
 
-
-$sql = "UPDATE color SET color='$setcolor' WHERE id=1";
+$sql = "UPDATE office_advisory SET announcement='$setannouncement' WHERE id='$setid'";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Color updated successfully";
+    echo "Record updated successfully";
 } else {
-    echo "Error updating color: " . $conn->error;
+    echo "Error updating record: " . $conn->error;
 }
 
 $conn->close();
@@ -113,7 +113,7 @@ $conn->close();
      
 					<div class="col-md-12">
 
-					<h1 class="alert alert-success" align="center">Update Color</h1>
+					<h1 class="alert alert-success" align="center">Update Announcement</h1>
 
 					<div class="col-md-6">
 						<div class="form-group">
@@ -126,14 +126,13 @@ $conn->close();
 						 ?>
        					<?php if (isset($alert)) {echo "<div class=\"alert alert-danger\"><strong>Note: </strong>" .$alert. "</div>"; }?>
 
-							<form action="update-color.php" method="post">
+							<form action="update-officeadvisory.php" method="post">
 
 										<label>ID</label>
-										<input class="form-control" name="id" value="1"/>
+										<input class="form-control" name="id" value="<?php echo $_REQUEST['id'];?>"/>
 										<hr>
-										<label>Color</label>
-										<textarea class="form-control" name="color" value=""/><?php 
-										error_reporting(0);echo $_REQUEST['favcolor'];?></textarea>
+										<label>Announcement</label>
+										<textarea class="form-control" name="announcement"/></textarea>
 
 										
 

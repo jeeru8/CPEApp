@@ -1,33 +1,3 @@
-<?php
-
-if (isset($_POST['submit'])) {
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cpe";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-$setcolor = $_REQUEST['color'];
-
-
-$sql = "UPDATE color SET color='$setcolor' WHERE id=1";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Color updated successfully";
-} else {
-    echo "Error updating color: " . $conn->error;
-}
-
-$conn->close();
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,10 +43,7 @@ $conn->close();
 			<div class="profile-userpic">
 				
 			</div>
-			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">MONITORING DASHBOARD</div>
-				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Administrator</div>
-			</div>
+			
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
@@ -90,62 +57,52 @@ $conn->close();
 			<li><a href="special_order.php"><em class="fa fa-bar-chart">&nbsp;</em>Special Order</a></li>
 			<li><a href="office_memorandum.php"><em class="fa fa-bar-chart">&nbsp;</em>Office Memorandum</a></li>
 			<li><a href="others.php"><em class="fa fa-bar-chart">&nbsp;</em>Others</a></li>
+			
 		</ul>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Dashboard</li>
+				<li class="active">Home App</li>
 			</ol>
 		</div><!--/.row-->
+		<h1 class="alert alert-success">
+			
+			<?php
+				$servername = "localhost";
+				$username = "root";
+				$password = "";
+				$dbname = "cpe";
 
-		
-		
+				// Create connection
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				// Check connection
+				if ($conn->connect_error) {
+				    die("Connection failed: " . $conn->connect_error);
+				} 
 
+				$idget = $_REQUEST['id'];
 
-		<div class="row">
-                    
-     
-					<div class="col-md-12">
+				// sql to delete a record
+				$sql = "DELETE FROM office_advisory WHERE id='$idget'";
 
-					<h1 class="alert alert-success" align="center">Update Color</h1>
+				if ($conn->query($sql) === TRUE) {
+				    echo "Record deleted successfully";
+				} else {
+				    echo "Error deleting record: " . $conn->error;
+				}
 
-					<div class="col-md-6">
-						<div class="form-group">
-
-							<?php if (isset($note)) {echo "<div class=\"alert alert-success\"><strong>Note: </strong>" .$note. "</div>"; 
-
-						 		
-							}
-
-						 ?>
-       					<?php if (isset($alert)) {echo "<div class=\"alert alert-danger\"><strong>Note: </strong>" .$alert. "</div>"; }?>
-
-							<form action="update-color.php" method="post">
-
-										<label>ID</label>
-										<input class="form-control" name="id" value="1"/>
-										<hr>
-										<label>Color</label>
-										<textarea class="form-control" name="color" value=""/><?php 
-										error_reporting(0);echo $_REQUEST['favcolor'];?></textarea>
-
-										
-
-										<button type="submit" name="submit" class="btn btn-warning">Update</button>
-
-						</form>				
-						</div>
-
-                    </div>
+				$conn->close();
+				?>
 
 
-		</div><!--/.row-->
+		</h1>
+
+		<a href="dashboard.php" class="btn btn-success">Go Back</a>
 		
 		
 	</div>	<!--/.main-->
